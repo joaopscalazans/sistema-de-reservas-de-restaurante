@@ -1,6 +1,4 @@
-package com.joaopscalazans.restaurante_api.domain.user;
-
-import java.util.UUID;
+package com.joaopscalazans.restaurante_api.domain.diningtable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,26 +15,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_user")
+@Table(name = "tb_dining_table")
 @Getter 
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class User {
+public class DiningTable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false, unique = true)
-    private String email;
     @Column(nullable = false)
-    private String password;
+    private Integer capacity;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private DiningTableStatus status;
 
 }
