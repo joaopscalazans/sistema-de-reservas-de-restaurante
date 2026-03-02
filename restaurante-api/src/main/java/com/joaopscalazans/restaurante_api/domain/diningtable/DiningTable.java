@@ -45,4 +45,10 @@ public class DiningTable {
     @OneToMany(mappedBy = "diningTable")
     private List<Reserve> reserves;
 
+    public DiningTable(String name, Integer capacity, DiningTableStatus status){
+        this.name = name;
+        this.capacity = capacity;
+        this.status = status;
+    }
+
 }
