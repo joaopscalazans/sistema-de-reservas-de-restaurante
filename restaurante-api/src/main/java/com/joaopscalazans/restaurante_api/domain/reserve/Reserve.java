@@ -34,7 +34,7 @@ public class Reserve {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private LocalDateTime reservedDate;
+    private LocalDateTime date;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private ReserveStatus status;
@@ -49,5 +49,12 @@ public class Reserve {
         referencedColumnName = "id",
         nullable = false)
     private DiningTable diningTable;
+
+    public Reserve(LocalDateTime date,User user,DiningTable diningTable,ReserveStatus status){
+        this.date = date;
+        this.user = user;
+        this.diningTable = diningTable;
+        this.status = status;
+    }
 
 }
