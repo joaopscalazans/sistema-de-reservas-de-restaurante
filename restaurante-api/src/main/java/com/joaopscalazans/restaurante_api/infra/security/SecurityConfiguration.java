@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/user/**").permitAll()
+                        .requestMatchers("/reserve/**").hasRole("CLIENT")
                         .requestMatchers(HttpMethod.GET, "/dining-table").hasAnyRole("CLIENT","ADMIN")
                         .requestMatchers("/dining-table/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
