@@ -8,9 +8,12 @@ import com.joaopscalazans.restaurante_api.dto.DiningTableCreateDTO;
 import com.joaopscalazans.restaurante_api.dto.DiningTableRequestDTO;
 import com.joaopscalazans.restaurante_api.service.DiningTableService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,9 +36,9 @@ public class DiningTableController {
         return ResponseEntity.ok(this.diningTableService.findAll());
     }
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody DiningTableCreateDTO entity) {
+    public ResponseEntity<Void> save(@RequestBody @Valid DiningTableCreateDTO entity) {
        this.diningTableService.save(entity);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     @PatchMapping("/{id}")
     public ResponseEntity<Void> update(@PathVariable Long id,@RequestBody DiningTableRequestDTO entity){

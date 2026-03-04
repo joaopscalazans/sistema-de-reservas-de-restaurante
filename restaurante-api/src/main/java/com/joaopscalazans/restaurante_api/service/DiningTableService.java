@@ -9,6 +9,7 @@ import com.joaopscalazans.restaurante_api.domain.diningtable.DiningTable;
 import com.joaopscalazans.restaurante_api.domain.diningtable.DiningTableStatus;
 import com.joaopscalazans.restaurante_api.dto.DiningTableCreateDTO;
 import com.joaopscalazans.restaurante_api.dto.DiningTableRequestDTO;
+import com.joaopscalazans.restaurante_api.infra.exceptions.EntityNotFoundException;
 import com.joaopscalazans.restaurante_api.infra.utils.ObjectUtils;
 import com.joaopscalazans.restaurante_api.repository.DiningTableRespository;
 
@@ -30,14 +31,20 @@ public class DiningTableService {
     }
     public void update(Long id,DiningTableRequestDTO entity){
         System.out.println(entity);
-        DiningTable tableTarget = tableRespository.findById(id).orElseThrow();
+        DiningTable tableTarget = this.findById(id);
         ObjectUtils.copyNonNullProperties(entity, tableTarget);
         tableRespository.save(tableTarget);
     }
 
     public void delete(Long id){
-        DiningTable table = tableRespository.findById(id).orElseThrow();
+        DiningTable table = this.findById(id);
         tableRespository.delete(table);
+    }
+
+    private DiningTable findById(Long id){
+        return tableRespository.findById(id).orElseThrow(
+            () -> new EntityNotFoundException("Mesa inexistente")
+        );
     }
 
 }

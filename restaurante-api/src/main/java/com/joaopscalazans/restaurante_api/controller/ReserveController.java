@@ -2,10 +2,11 @@ package com.joaopscalazans.restaurante_api.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joaopscalazans.restaurante_api.domain.reserve.Reserve;
 import com.joaopscalazans.restaurante_api.dto.ReserveRequestDTO;
 import com.joaopscalazans.restaurante_api.dto.ReserveResponseDTO;
 import com.joaopscalazans.restaurante_api.service.ReserveService;
+
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,13 +35,13 @@ public class ReserveController {
     private ReserveService reserveService;
 
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody ReserveRequestDTO entity,@AuthenticationPrincipal UserDetails user) {
+    public ResponseEntity<Void> save(@RequestBody @Valid ReserveRequestDTO entity,@AuthenticationPrincipal UserDetails user) {
         reserveService.save(entity,user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<ReserveResponseDTO>> findAlls(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<List<ReserveResponseDTO>> findAll(@AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(reserveService.findByUser(userDetails));
     }
     @PatchMapping("/{id}/cancel")

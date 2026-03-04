@@ -8,6 +8,8 @@ import com.joaopscalazans.restaurante_api.dto.TokenDTO;
 import com.joaopscalazans.restaurante_api.infra.security.AuthService;
 import com.joaopscalazans.restaurante_api.service.UserService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +29,12 @@ public class UserController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO entity) {
+    public ResponseEntity<TokenDTO> login(@RequestBody @Valid LoginDTO entity) {
          return ResponseEntity.ok(new TokenDTO(authService.login(entity)));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody RegisterDTO entity) {
+    public ResponseEntity<Void> register(@RequestBody @Valid RegisterDTO entity) {
             userService.register(entity);
             return ResponseEntity.status(HttpStatus.CREATED).build();
     }

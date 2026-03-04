@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.joaopscalazans.restaurante_api.infra.exceptions.UnauthorizedException;
+
 
 @Service
 public class TokenService {
@@ -17,8 +19,7 @@ public class TokenService {
     private String secret;
     private final String ISSUER = "restaurante-api";
 
-    public String generateToken(String subject){
-
+    public String generateToken(String subject) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         return JWT.create()
         .withIssuer(ISSUER)
@@ -32,12 +33,16 @@ public class TokenService {
     }
 
     public String validToken(String token){
-        Algorithm algorithm = Algorithm.HMAC256(secret);
+       try {
+         Algorithm algorithm = Algorithm.HMAC256(secret);
         return JWT.require(algorithm)
         .withIssuer(ISSUER)
         .build()
         .verify(token)
         .getSubject();
+       } catch (Exception e) {
+        throw new UnauthorizedException("Token inválido ou expirado");
+       }
     }
 
 
