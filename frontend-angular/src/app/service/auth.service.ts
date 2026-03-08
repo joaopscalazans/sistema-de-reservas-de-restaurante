@@ -12,6 +12,7 @@ export class AuthService {
 
   private url: string = "http://localhost:8080/user"
 
+
   constructor(private http: HttpClient) { }
 
   public login(user: Login) {
@@ -19,10 +20,10 @@ export class AuthService {
       tap(res =>{
         console.log(res);
         const token = res.token;
-        var payload = JSON.parse(atob(token.split(".")[1]))
-        var expired = payload.exp * 1000;
-        localStorage.setItem("authToken", token);
-        localStorage.setItem("expiredAt", expired.toString())
+        const payload = JSON.parse(atob(token.split(".")[1]))
+        const expired = payload.exp * 1000;
+        localStorage.setItem("token", token);
+        localStorage.setItem("token_expiredAt", expired.toString())
       }),
       catchError(err => {
         console.log(err)
@@ -38,5 +39,16 @@ export class AuthService {
       console.log(err);
       return throwError(() => err);
     }));
+  }
+
+  public isAuthenticated():boolean{
+    const token = localStorage.getItem("token")
+    const expiredAt = localStorage.getItem("token_expiredAt")
+    if(!token || !expiredAt){
+      return false;
+    }
+    const now = Date.now();
+   
+    return now < Number(expiredAt) || (localStorage.clear(), false)
   }
 }

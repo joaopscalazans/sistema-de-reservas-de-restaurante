@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   private authService = inject(AuthService)
-  private router = new Router();
+  private router = inject(Router);
   user:Login = {
     email: '',
     password: ''

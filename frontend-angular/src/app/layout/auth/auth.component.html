@@ -1,0 +1,8 @@
+<h1>Restaurente tal</h1>
+<div class="container">
+    <router-outlet/>
+</div>
+<div>
+    <button type="button" (click)="route.navigate(['auth/login'])">Login</button>
+    <button type="button"(click)="route.navigate(['auth/register'])">Register</button>
+</div>
