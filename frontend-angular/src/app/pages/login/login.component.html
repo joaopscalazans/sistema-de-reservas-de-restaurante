@@ -1,0 +1,10 @@
+<h1>Nome do Site</h1>
+
+<h2>Login</h2>
+<form (ngSubmit)="login()">
+    <label for="email">Email</label>
+    <input type="emial"id="email" name="email" [(ngModel)]="user.email" required>
+    <label for="password">Senha</label>
+    <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
+    <button type="submit">Click-me</button>
+</form>
