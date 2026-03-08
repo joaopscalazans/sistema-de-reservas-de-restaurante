@@ -24,21 +24,13 @@ export class AuthService {
         const expired = payload.exp * 1000;
         localStorage.setItem("token", token);
         localStorage.setItem("token_expiredAt", expired.toString())
-      }),
-      catchError(err => {
-        console.log(err)
-        return throwError(() => err);
-      }
-      ));
+      }));
 
 
   }
 
   public register(user: Register): Observable<void> {
-    return this.http.post<void>(`${this.url}/register`, user).pipe(catchError(err => {
-      console.log(err);
-      return throwError(() => err);
-    }));
+    return this.http.post<void>(`${this.url}/register`, user);
   }
 
   public isAuthenticated():boolean{
