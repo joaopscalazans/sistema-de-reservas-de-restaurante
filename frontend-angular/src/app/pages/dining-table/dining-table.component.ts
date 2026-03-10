@@ -1,24 +1,24 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { DiningTableService } from '../../service/dining-table.service';
 import { DiningTable } from '../../model/diningtable/dining-table';
 
 @Component({
   selector: 'app-dining-table',
   standalone: true,
-  imports: [],
+  imports:[],
   templateUrl: './dining-table.component.html',
   styleUrl: './dining-table.component.css'
 })
-export class DiningTableComponent {
+export class DiningTableComponent implements OnInit {
+  ngOnInit(): void {
+   this.getAll();
+  }
 
   private tableService = inject(DiningTableService)
   tables = signal<DiningTable[]>([]);
-  userRole: String;
+  authorized = signal(localStorage.getItem("role") === "ADMIN")
 
-  constructor(){
-    this.userRole = ""
-    this.getAll();
-  }
+
 
   getAll(){
     this.tableService.listAll().subscribe({
@@ -27,6 +27,7 @@ export class DiningTableComponent {
       }
     });
   }
+
   
 
 }

@@ -22,11 +22,11 @@ export class AuthService {
         const token = res.token;
         const payload = JSON.parse(atob(token.split(".")[1]))
         const expired = payload.exp * 1000;
+        const role = payload.role;
         localStorage.setItem("token", token);
         localStorage.setItem("token_expiredAt", expired.toString())
+        localStorage.setItem("role", role)
       }));
-
-
   }
 
   public register(user: Register): Observable<void> {
@@ -36,7 +36,8 @@ export class AuthService {
   public isAuthenticated():boolean{
     const token = localStorage.getItem("token")
     const expiredAt = localStorage.getItem("token_expiredAt")
-    if(!token || !expiredAt){
+    const role = localStorage.getItem("role")
+    if(!token || !expiredAt || !role){
       return false;
     }
     const now = Date.now();

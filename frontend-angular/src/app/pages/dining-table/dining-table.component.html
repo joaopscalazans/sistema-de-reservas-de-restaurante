@@ -5,6 +5,7 @@
             <td>Nome</td>
             <td>Capacidade</td>
             <td>Status</td>
+            @if(authorized()){ <td><button type="button">Novo</button></td> }
         </tr>
     </thead>
     <tbody>
@@ -13,7 +14,7 @@
             <td>{{table.name}}</td>
             <td>{{table.capacity}}</td>
             <td>{{table.status}}</td>
-            @if(false){
+            @if(authorized()){
             <td>
                 <button type="button">Alterar</button><button type="button">Deletar</button>
             </td>
@@ -23,7 +24,7 @@
     </tbody>
 </table>
 
-<div>
+<div style="display: none;">
     <div>
         <img src="" alt="">
         <h3>nome da mesa</h3>
