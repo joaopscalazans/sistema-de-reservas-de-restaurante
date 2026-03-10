@@ -23,7 +23,7 @@ export class LoginComponent {
   login(){
     this.authService.login(this.user).subscribe({
       next: res =>{
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/"]);
       },
       error: err =>{
         alert(err.error.message)

@@ -4,9 +4,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './guards/auth.guard';
 import { AuthComponent } from './layout/auth/auth.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { MainBackgroundLayoutComponent } from './layout/main-background-layout/main-background-layout.component';
+import { DiningTableComponent } from './pages/dining-table/dining-table.component';
 
 export const routes: Routes = [
-    {path:"", redirectTo:"home",pathMatch:"full"},
+    {path:"", redirectTo:"main",pathMatch:"full"},
     {
         path:'auth',
         component:AuthComponent,
@@ -17,8 +19,13 @@ export const routes: Routes = [
         ]
     },
     {
-        path:"home",
-        component: HomeComponent,
-        canActivate:[authGuard]
+        path:"main",
+        component: MainBackgroundLayoutComponent,
+        canActivate:[authGuard],
+        children:[
+            {path:'',redirectTo:'home',pathMatch:'full'},
+            {path:"home",component:HomeComponent},
+            {path:"dining-table",component:DiningTableComponent}
+        ]
     }
 ];

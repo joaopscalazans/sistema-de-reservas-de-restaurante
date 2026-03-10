@@ -1,0 +1,36 @@
+<h2>Mesas</h2>
+<table>
+    <thead>
+        <tr>
+            <td>Nome</td>
+            <td>Capacidade</td>
+            <td>Status</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for(table of tables();track table.id){
+        <tr>
+            <td>{{table.name}}</td>
+            <td>{{table.capacity}}</td>
+            <td>{{table.status}}</td>
+            @if(false){
+            <td>
+                <button type="button">Alterar</button><button type="button">Deletar</button>
+            </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <div>
+        <img src="" alt="">
+        <h3>nome da mesa</h3>
+        <p>Capacidade</p>
+        <p>Status</p>
+    </div>
+    <div>
+        <button>Fazer uma Reserva</button>
+    </div>
+</div>
