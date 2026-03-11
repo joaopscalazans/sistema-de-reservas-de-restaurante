@@ -2,36 +2,28 @@
 <table>
     <thead>
         <tr>
-            <td>Nome</td>
-            <td>Capacidade</td>
-            <td>Status</td>
-            @if(authorized()){ <td><button type="button">Novo</button></td> }
+            <th>Nome</th>
+            <th>Capacidade</th>
+            <th>Status</th>
+            @if(authorized()){ <th><button (click)="openModal()" type="button">Novo</button></th> }
         </tr>
     </thead>
     <tbody>
         @for(table of tables();track table.id){
-        <tr>
+        <tr (click)="selectTable(table)">
             <td>{{table.name}}</td>
             <td>{{table.capacity}}</td>
             <td>{{table.status}}</td>
             @if(authorized()){
             <td>
-                <button type="button">Alterar</button><button type="button">Deletar</button>
+                <button type="button" (click)="openModal()">Alterar</button>
             </td>
             }
         </tr>
         }
     </tbody>
 </table>
+<!--side panel-->
+@if(selectTable() !== null){<app-reserve-details [table]="selectTable()" ></app-reserve-details>}
 
-<div style="display: none;">
-    <div>
-        <img src="" alt="">
-        <h3>nome da mesa</h3>
-        <p>Capacidade</p>
-        <p>Status</p>
-    </div>
-    <div>
-        <button>Fazer uma Reserva</button>
-    </div>
-</div>
+

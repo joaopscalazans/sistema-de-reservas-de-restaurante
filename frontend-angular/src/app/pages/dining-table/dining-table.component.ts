@@ -1,15 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { DiningTableService } from '../../service/dining-table.service';
 import { DiningTable } from '../../model/diningtable/dining-table';
+import { ReserveDetailsComponent } from "../../components/reserve-details/reserve-details.component";
+import { TableModalComponent } from "../../components/table-modal/table-modal.component";
 
 @Component({
   selector: 'app-dining-table',
   standalone: true,
-  imports:[],
+  imports: [ReserveDetailsComponent],
   templateUrl: './dining-table.component.html',
   styleUrl: './dining-table.component.css'
 })
 export class DiningTableComponent implements OnInit {
+  
   ngOnInit(): void {
    this.getAll();
   }
@@ -17,8 +20,11 @@ export class DiningTableComponent implements OnInit {
   private tableService = inject(DiningTableService)
   tables = signal<DiningTable[]>([]);
   authorized = signal(localStorage.getItem("role") === "ADMIN")
+  selectTable = signal<DiningTable | null>(null)
 
-
+  openDetails(table:DiningTable){
+    this.selectTable.set(table);
+  }
 
   getAll(){
     this.tableService.listAll().subscribe({
@@ -27,6 +33,8 @@ export class DiningTableComponent implements OnInit {
       }
     });
   }
+
+
 
   
 
