@@ -10,13 +10,13 @@
     </thead>
     <tbody>
         @for(table of tables();track table.id){
-        <tr (click)="selectTable(table)">
+        <tr (click)="openDetails(table)">
             <td>{{table.name}}</td>
             <td>{{table.capacity}}</td>
             <td>{{table.status}}</td>
             @if(authorized()){
             <td>
-                <button type="button" (click)="openModal()">Alterar</button>
+                <button type="button" (click)="openModal(table); $event.stopPropagation()">Alterar</button>
             </td>
             }
         </tr>
@@ -24,6 +24,10 @@
     </tbody>
 </table>
 <!--side panel-->
-@if(selectTable() !== null){<app-reserve-details [table]="selectTable()" ></app-reserve-details>}
-
-
+@if(selectTable() !== undefined){<app-reserve-details [table]="selectTable()"></app-reserve-details>}
+<!--Modal-->
+@if(showModal()){<app-table-modal
+     [table]="editingTable()"
+     (saved)="getAll()"
+     (close)="closeModal()">
+    </app-table-modal>}

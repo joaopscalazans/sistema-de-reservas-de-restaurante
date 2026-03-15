@@ -1,0 +1,23 @@
+   <h2>
+     @if(table()){
+        Editar Mesa
+    }@else{
+        Criar Mesa
+    }
+   </h2>
+   <button type="button" style="color:red" (click)="close.emit()">Cancelar</button>
+<form (ngSubmit)="save()">
+    <label for="name">Nome</label>
+    <input type="text" name="name" id="name" [(ngModel)]="tableData.name">
+    <label for="capacity">Capacidade</label>
+    <input type="number" name="capacity" id="capacity" [(ngModel)]="tableData.capacity">
+    <label for="status">Status</label>
+    <select name="status" id="status" [(ngModel)]="tableData.status">
+        @for(status of getKeys(diningTableStatus); track status){
+            <option [value]="status">{{ status }}</option>
+        }
+    </select>
+    <button>Salvar</button>
+</form>
+@if(tableData.id > 0){<button (click)="delete()">Delete</button>}
+

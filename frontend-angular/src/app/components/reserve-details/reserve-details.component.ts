@@ -10,6 +10,6 @@ import { DiningTable } from '../../model/diningtable/dining-table';
 })
 export class ReserveDetailsComponent {
 
-  table = input<DiningTable | null>(null);
+  table = input<DiningTable |undefined>(undefined);
 
 }

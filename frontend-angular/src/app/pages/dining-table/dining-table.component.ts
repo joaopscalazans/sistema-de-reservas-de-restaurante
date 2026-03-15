@@ -7,7 +7,7 @@ import { TableModalComponent } from "../../components/table-modal/table-modal.co
 @Component({
   selector: 'app-dining-table',
   standalone: true,
-  imports: [ReserveDetailsComponent],
+  imports: [ReserveDetailsComponent, TableModalComponent],
   templateUrl: './dining-table.component.html',
   styleUrl: './dining-table.component.css'
 })
@@ -20,10 +20,22 @@ export class DiningTableComponent implements OnInit {
   private tableService = inject(DiningTableService)
   tables = signal<DiningTable[]>([]);
   authorized = signal(localStorage.getItem("role") === "ADMIN")
-  selectTable = signal<DiningTable | null>(null)
+  selectTable = signal<DiningTable | undefined>(undefined)
+  editingTable = signal<DiningTable | undefined>(undefined);
+  showModal = signal<boolean>(false);
 
   openDetails(table:DiningTable){
     this.selectTable.set(table);
+  }
+
+  openModal(table?:DiningTable){
+    if(table) this.editingTable.set(table);
+    else this.editingTable.set(undefined);
+
+    this.showModal.set(true);
+  }
+  closeModal(){
+    this.showModal.set(false)
   }
 
   getAll(){
