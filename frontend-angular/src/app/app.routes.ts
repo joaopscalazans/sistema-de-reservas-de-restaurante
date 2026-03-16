@@ -6,6 +6,7 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MainBackgroundLayoutComponent } from './layout/main-background-layout/main-background-layout.component';
 import { DiningTableComponent } from './pages/dining-table/dining-table.component';
+import { MyReservesComponent } from './pages/my-reserves/my-reserves.component';
 
 export const routes: Routes = [
     {path:"", redirectTo:"main",pathMatch:"full"},
@@ -25,7 +26,8 @@ export const routes: Routes = [
         children:[
             {path:'',redirectTo:'home',pathMatch:'full'},
             {path:"home",component:HomeComponent},
-            {path:"dining-table",component:DiningTableComponent}
+            {path:"dining-table",component:DiningTableComponent},
+            {path:"my-reserves",component:MyReservesComponent}
         ]
     }
 ];

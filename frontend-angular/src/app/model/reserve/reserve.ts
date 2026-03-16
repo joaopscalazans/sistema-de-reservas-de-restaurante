@@ -1,5 +1,6 @@
 import { DiningTable } from "../diningtable/dining-table";
 import { User } from "../user/user";
+import { ReserveStatus } from "./reserve-status";
 
 export interface Reserve{
 
@@ -7,5 +8,6 @@ export interface Reserve{
     date: Date;
     user: User;
     table: DiningTable;
+    status: ReserveStatus;
 
 }

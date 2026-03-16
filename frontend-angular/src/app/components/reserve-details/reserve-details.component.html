@@ -1,18 +1,14 @@
 
+<h2>Reserve</h2>
+<button (click)="close.emit()">Fechar</button>
+@if(reserve().status != "CANCELLED"){<button (click)="alertCancel()">Cancelar</button>}
 <div>
-    <div>
-        <img src="" alt="">
-        <h3>{{ table().name }}</h3>
-        <p>Capacidade: {{ table().capacity }}</p>
-        <p>{{ table().status }}</p>
-    </div>
-    <form (ngSubmit)="create()">
-        <label for="data">Data</label>
-        <input type="date" name="date" id="date" [(ngModel)]="date">
-        <label for="time">Horário</label>
-        <input type="time" name="time" id="time" [(ngModel)]="time">
-        <button>Confirmar</button>
-    </form>
+    <p>{{ reserve().id }}</p>
+    <p>{{ reserve().date | date:'dd/MM/yyyy HH:mm'}}</p>
+    <p>{{ reserve().user.name  }}</p>
+    <p>{{ reserve().user.email }}</p>
+    <p>{{ reserve().user.role  }}</p>
+    <p>{{ reserve().table.name }}</p>
+    <p>{{ reserve().table.capacity }}</p>
+    <p>{{ reserve().status }}</p>
 </div>
-
-

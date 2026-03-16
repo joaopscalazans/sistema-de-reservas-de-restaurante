@@ -1,0 +1,18 @@
+
+<div>
+    <div>
+        <img src="" alt="">
+        <h3>{{ table().name }}</h3>
+        <p>Capacidade: {{ table().capacity }}</p>
+        <p>{{ table().status }}</p>
+    </div>
+    <form (ngSubmit)="create()">
+        <label for="data">Data</label>
+        <input type="date" name="date" id="date" [(ngModel)]="date">
+        <label for="time">Horário</label>
+        <input type="time" name="time" id="time" [(ngModel)]="time">
+        <button>Confirmar</button>
+    </form>
+</div>
+
+
