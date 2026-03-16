@@ -22,10 +22,13 @@ export class DiningTableComponent implements OnInit {
   authorized = signal(localStorage.getItem("role") === "ADMIN")
   selectTable = signal<DiningTable | undefined>(undefined)
   editingTable = signal<DiningTable | undefined>(undefined);
-  showModal = signal<boolean>(false);
+  showModal = signal(false);
 
   openDetails(table:DiningTable){
     this.selectTable.set(table);
+  }
+  closeDetails(){
+    this.selectTable.set(undefined)
   }
 
   openModal(table?:DiningTable){

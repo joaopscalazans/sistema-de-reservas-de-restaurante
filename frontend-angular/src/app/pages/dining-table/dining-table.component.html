@@ -24,7 +24,10 @@
     </tbody>
 </table>
 <!--side panel-->
-@if(selectTable() !== undefined){<app-reserve-details [table]="selectTable()"></app-reserve-details>}
+@if(selectTable() !== undefined){<app-reserve-details
+     [table]="selectTable()!"
+     (close)="closeDetails()"
+></app-reserve-details>}
 <!--Modal-->
 @if(showModal()){<app-table-modal
      [table]="editingTable()"
