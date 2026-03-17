@@ -3,6 +3,7 @@ import { DiningTableService } from '../../service/dining-table.service';
 import { DiningTable } from '../../model/diningtable/dining-table';
 import { ReserveCreateComponent } from "../../components/reserve-create/reserve-create.component";
 import { TableModalComponent } from "../../components/table-modal/table-modal.component";
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-dining-table',
@@ -18,8 +19,9 @@ export class DiningTableComponent implements OnInit {
   }
 
   private tableService = inject(DiningTableService)
+  private authService = inject(AuthService)
   tables = signal<DiningTable[]>([]);
-  authorized = signal(localStorage.getItem("role") === "ADMIN")
+  authorized = signal(this.authService.getRole() === "ADMIN")
   selectTable = signal<DiningTable | undefined>(undefined)
   editingTable = signal<DiningTable | undefined>(undefined);
   showModal = signal(false);

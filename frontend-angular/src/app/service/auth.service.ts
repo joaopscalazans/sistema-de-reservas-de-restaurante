@@ -18,7 +18,6 @@ export class AuthService {
   public login(user: Login) {
    return this.http.post<Token>(`${this.url}/login`, user).pipe(
       tap(res =>{
-        console.log(res);
         const token = res.token;
         const payload = JSON.parse(atob(token.split(".")[1]))
         const expired = payload.exp * 1000;
@@ -47,5 +46,9 @@ export class AuthService {
 
   public logout(){
     localStorage.clear();
+  }
+
+  public getRole(){
+    return localStorage.getItem("role")
   }
 }

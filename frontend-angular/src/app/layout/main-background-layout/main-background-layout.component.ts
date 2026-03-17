@@ -19,4 +19,8 @@ export class MainBackgroundLayoutComponent {
     this.router.navigate(["auth/login"]);
   }
 
+  getRole(){
+    return this.authService.getRole()
+  }
+
 }
