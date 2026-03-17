@@ -61,7 +61,10 @@ export class TableModalComponent {
   }
 
   delete() {
-    this.tableService.delete(this.tableData.id).subscribe({
+    const result = confirm("Você tem certeza que quer deletar??")
+
+    if(result){
+     this.tableService.delete(this.tableData.id).subscribe({
       next: () => {
         this.saved.emit();
         this.close.emit();
@@ -70,7 +73,10 @@ export class TableModalComponent {
         alert(err.error.message);
       }
     })
+    }
+    
   }
+ 
 }
 
 

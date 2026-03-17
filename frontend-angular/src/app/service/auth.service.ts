@@ -44,4 +44,8 @@ export class AuthService {
    
     return now < Number(expiredAt) || (localStorage.clear(), false)
   }
+
+  public logout(){
+    localStorage.clear();
+  }
 }

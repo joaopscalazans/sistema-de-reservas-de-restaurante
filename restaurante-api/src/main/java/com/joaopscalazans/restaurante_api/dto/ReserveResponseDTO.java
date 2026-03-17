@@ -2,6 +2,8 @@ package com.joaopscalazans.restaurante_api.dto;
 
 import java.time.LocalDateTime;
 
-public record ReserveResponseDTO(Long id,LocalDateTime date,UserResponseDTO user,DiningTableResponseDTO table) {
+import com.joaopscalazans.restaurante_api.domain.reserve.ReserveStatus;
+
+public record ReserveResponseDTO(Long id,LocalDateTime date,UserResponseDTO user,DiningTableResponseDTO table,ReserveStatus status) {
 
 }

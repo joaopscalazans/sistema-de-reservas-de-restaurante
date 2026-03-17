@@ -80,7 +80,9 @@ public class ReserveService {
                 res.getDiningTable().getName(),
                 res.getDiningTable().getCapacity(),
                 res.getDiningTable().getStatus()
-            ))).toList();
+            ),
+            res.getStatus()
+        )).toList();
     }
 
     public void cancel(Long id){

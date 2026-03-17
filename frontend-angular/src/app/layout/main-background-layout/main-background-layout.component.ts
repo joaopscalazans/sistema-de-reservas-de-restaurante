@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from "@angular/router";
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, Router } from "@angular/router";
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-main-background-layout',
@@ -9,5 +10,13 @@ import { RouterOutlet, RouterLink } from "@angular/router";
   styleUrl: './main-background-layout.component.css'
 })
 export class MainBackgroundLayoutComponent {
+
+  private authService = inject(AuthService)
+  private router = inject(Router)
+
+  logout(){
+    this.authService.logout();
+    this.router.navigate(["auth/login"]);
+  }
 
 }
