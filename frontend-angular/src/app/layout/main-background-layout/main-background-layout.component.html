@@ -1,22 +1,28 @@
-<nav style="background-color:gray;">
-    <div><img src="" alt=""> <h1>Nome Marca</h1></div>
-    <div></div>
-    <div class="user-dropdown">
-        <div class="user-perfil">
-            <img src="" alt="">
-            <h3>Meu Perfil</h3>
-        </div>
-        <div class="dropdown-menu">
-            <ul>
-                <li><a routerLink="">Home</a></li>
-                @if(getRole() !== "ADMIN"){<li><a routerLink="my-reserves">Minhas Reserves</a></li>}
-                <li><a (click)="logout()">Logout</a></li>
-            </ul>
+<nav>
+    <div class="nav-left">
+        <img class="logo" [src]="logo" alt="Logo">
+        <h1>Sistema de reservas de restaurante</h1>
+    </div>
+
+    <div class="nav-right">
+        <div class="user-dropdown">
+            <div class="user-perfil">
+                <img [src]="imagemPerfil" alt="">
+                <h3>Meu Perfil</h3>
+            </div>
+
+            <div class="dropdown-menu">
+                <ul>
+                    <li><a routerLink="">Home</a></li>
+                    @if(getRole() !== "ADMIN"){<li><a routerLink="my-reserves">Minhas Reserves</a></li>}
+                    <li><a (click)="logout()">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+
 </nav>
-<div>
-    <router-outlet></router-outlet> 
+
+<div class="contents">
+    <router-outlet></router-outlet>
 </div>
-
-

@@ -40,6 +40,10 @@ export class MyReservesComponent implements OnInit {
 
   cancel(id: number){
     this.reserveService.cancel(id).subscribe({
+      next: () =>{
+        alert("Reserva cancelada com sucesso")
+        this.loadReserves();
+      },
       error: err => {
         alert(err.error.message);
       }

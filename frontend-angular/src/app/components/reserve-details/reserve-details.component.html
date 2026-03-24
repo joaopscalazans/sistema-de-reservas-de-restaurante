@@ -1,14 +1,46 @@
-
-<h2>Reserve</h2>
-<button (click)="close.emit()">Fechar</button>
+<div class="head">
+    <h2>Reserve</h2>
+    <div><button (click)="close.emit()" class="close">Fechar</button></div>
+</div>
 @if(reserve().status != "CANCELLED"){<button (click)="alertCancel()">Cancelar</button>}
-<div>
-    <p>{{ reserve().id }}</p>
-    <p>{{ reserve().date | date:'dd/MM/yyyy HH:mm'}}</p>
-    <p>{{ reserve().user.name  }}</p>
-    <p>{{ reserve().user.email }}</p>
-    <p>{{ reserve().user.role  }}</p>
-    <p>{{ reserve().table.name }}</p>
-    <p>{{ reserve().table.capacity }}</p>
-    <p>{{ reserve().status }}</p>
+<div class="details">
+    <div class="field">
+        <span>ID:</span>
+        <p>{{ reserve().id }}</p>
+    </div>
+
+    <div class="field">
+        <span>Data:</span>
+        <p>{{ reserve().date | date:'dd/MM/yyyy HH:mm'}}</p>
+    </div>
+
+    <div class="field">
+        <span>Usuário:</span>
+        <p>{{ reserve().user.name }}</p>
+    </div>
+
+    <div class="field">
+        <span>Email:</span>
+        <p>{{ reserve().user.email }}</p>
+    </div>
+
+    <div class="field">
+        <span>Função:</span>
+        <p>{{ reserve().user.role }}</p>
+    </div>
+
+    <div class="field">
+        <span>Mesa:</span>
+        <p>{{ reserve().table.name }}</p>
+    </div>
+
+    <div class="field">
+        <span>Capacidade:</span>
+        <p>{{ reserve().table.capacity }}</p>
+    </div>
+
+    <div class="field">
+        <span>Status:</span>
+        <p>{{ reserve().status }}</p>
+    </div>
 </div>

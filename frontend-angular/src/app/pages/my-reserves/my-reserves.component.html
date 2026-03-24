@@ -1,21 +1,28 @@
-<table>
-    <thead>
-        <th>Data</th>
-        <th>Mesa</th>
-    </thead>
-    <tbody>
-        @for(reserve of lista(); track reserve.id){
-            <tr (click)="openModal(reserve)">
-                <td>{{reserve.date | date:'dd/MM/yyyy HH:mm'}}</td>
-                <td>{{reserve.table.name}}</td>
-                <td>{{ reserve.status }}</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="contents">
+    <div class="main-table">
+        <table>
+            <thead>
+                <th>Data</th>
+                <th>Mesa</th>
+                <th>Status</th>
+            </thead>
+            <tbody>
+                @for(reserve of lista(); track reserve.id){
+                <tr (click)="openModal(reserve)">
+                    <td>{{reserve.date | date:'dd/MM/yyyy HH:mm'}}</td>
+                    <td>{{reserve.table.name}}</td>
+                    <td>{{ reserve.status }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
-@if(showModal()){<app-reserve-details 
-    [reserve]="selectReserve()!"
-    (close)="closeModal()"
-    (cancel)="cancel($event)"
-></app-reserve-details>}
+
+    @if(showModal()){
+    <div class="side-panel">
+        <app-reserve-details [reserve]="selectReserve()!" (close)="closeModal()"
+            (cancel)="cancel($event)"></app-reserve-details>
+    </div>
+    }
+</div>

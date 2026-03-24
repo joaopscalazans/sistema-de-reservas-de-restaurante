@@ -1,36 +1,48 @@
 <h2>Mesas</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Capacidade</th>
-            <th>Status</th>
-            @if(authorized()){ <th><button (click)="openModal()" type="button">Novo</button></th> }
-        </tr>
-    </thead>
-    <tbody>
-        @for(table of tables();track table.id){
-        <tr (click)="openDetails(table)">
-            <td>{{table.name}}</td>
-            <td>{{table.capacity}}</td>
-            <td>{{table.status}}</td>
-            @if(authorized()){
-            <td>
-                <button type="button" (click)="openModal(table); $event.stopPropagation()">Alterar</button>
-            </td>
-            }
-        </tr>
-        }
-    </tbody>
-</table>
-<!--side panel-->
-@if(selectTable() !== undefined){<app-reserve-create
-     [table]="selectTable()!"
-     (close)="closeDetails()"
-></app-reserve-create>}
+<div class="contents">
+    <div class="main-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Capacidade</th>
+                    <th>Status</th>
+                    @if(authorized()){ <th><button (click)="openModal()" type="button">Novo</button></th> }
+                </tr>
+            </thead>
+            <tbody>
+                @for(table of tables();track table.id){
+                <tr (click)="openDetails(table)">
+                    <td>{{table.name}}</td>
+                    <td>{{table.capacity}}</td>
+                    <td>{{table.status}}</td>
+                    @if(authorized()){
+                    <td>
+                        <button type="button" (click)="openModal(table); $event.stopPropagation()">Alterar</button>
+                    </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @if(selectTable() !== undefined){
+    <div class="side-panel">
+        <app-reserve-create [table]="selectTable()!" (close)="closeDetails()"></app-reserve-create>
+    </div>
+    }
+</div>
+
 <!--Modal-->
-@if(showModal()){<app-table-modal
-     [table]="editingTable()"
-     (saved)="getAll()"
-     (close)="closeModal()">
-    </app-table-modal>}
+@if(showModal()){
+<div class="modal-overlay">
+  <div class="modal-content">
+    <app-table-modal
+      [table]="editingTable()"
+      (saved)="getAll()"
+      (close)="closeModal()">
+    </app-table-modal>
+  </div>
+</div>
+}

@@ -1,0 +1,45 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.field-title {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-form {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
+}
+
+.field-form label {
+    font-weight: bold;
+    color: #cfcfe6;
+}
+
+.field-form input {
+    background-color: #4a4a4a;
+    color: white;
+    border: 1px solid #555;
+    padding: 8px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.field-form input:focus {
+    border-color: #4db6ac;
+}
+form button {
+    margin-top: 10px;
+    align-self: flex-end;
+}

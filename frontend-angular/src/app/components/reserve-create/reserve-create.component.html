@@ -1,18 +1,25 @@
-
-<div>
-    <div>
-        <img src="" alt="">
-        <h3>{{ table().name }}</h3>
-        <p>Capacidade: {{ table().capacity }}</p>
-        <p>{{ table().status }}</p>
+<div class="form-container">
+    <div class="form-head">
+        <div class="field-title">
+            <span><img class="logo" [src]="logo" alt="logo"></span>
+            <h3>{{ table().name }}</h3>
+        </div>
+        <div class="field">
+            <span>Capacitade</span>
+            <p>{{ table().capacity }}</p>
+        </div>
+        <div class="field">
+            <span>Status</span>
+            <p>{{ table().status }}</p>
+        </div>
     </div>
     <form (ngSubmit)="create()">
-        <label for="data">Data</label>
-        <input type="date" name="date" id="date" [(ngModel)]="date">
-        <label for="time">Horário</label>
-        <input type="time" name="time" id="time" [(ngModel)]="time">
-        <button>Confirmar</button>
+        <div class="field-form"><label for="data">Data</label>
+            <input type="date" name="date" id="date" [(ngModel)]="date">
+        </div>
+        <div class="field-form"><label for="time">Horário</label>
+            <input type="time" name="time" id="time" [(ngModel)]="time">
+        </div>
+        @if(getRole() !== "ADMIN"){<button>Confirmar</button>}
     </form>
 </div>
-
-

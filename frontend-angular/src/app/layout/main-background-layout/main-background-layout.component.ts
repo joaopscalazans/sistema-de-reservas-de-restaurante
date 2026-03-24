@@ -14,6 +14,9 @@ export class MainBackgroundLayoutComponent {
   private authService = inject(AuthService)
   private router = inject(Router)
 
+  imagemPerfil = "assets/foto-perfil.png"
+  logo = "assets/mesa-de-jantar.png"
+
   logout(){
     this.authService.logout();
     this.router.navigate(["auth/login"]);

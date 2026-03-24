@@ -29,15 +29,23 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         return http
-                .cors(cors -> {})
+                .cors(cors -> {
+                })
                 .csrf(csrf -> csrf.disable())
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/",
+                                "/index.html",
+                                "/assets/**",
+                                "/*.js",
+                                "/*.css")
+                        .permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/user/**").permitAll()
                         .requestMatchers("/reserve/**").hasRole("CLIENT")
-                        .requestMatchers(HttpMethod.GET, "/dining-table").hasAnyRole("CLIENT","ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/dining-table").hasAnyRole("CLIENT", "ADMIN")
                         .requestMatchers("/dining-table/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

@@ -1,0 +1,62 @@
+
+.close {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close:hover {
+    background-color: #c0392b;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+form label {
+    font-weight: bold;
+    color: #cfcfe6;
+}
+
+
+form input,
+form select {
+    background-color: #4a4a4a;
+    color: white;
+    border: 1px solid #555;
+    padding: 8px;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+form input:focus,
+form select:focus {
+    border-color: #4db6ac;
+}
+
+form button {
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+
+form button[type="button"] {
+    background-color: #e74c3c;
+    color: white;
+    margin-left: 10px;
+}
+
+form button[type="button"]:hover {
+    background-color: #c0392b;
+}
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
