@@ -1,117 +1,128 @@
+<div align="center">
+<img src="assets/mesa-de-jantar.png" width="150" >
+<br><br>
+
 # Sistema de Reservas de Restaurante
-<p align="center">
-  <img src="https://img.shields.io/badge/Java-17-red"/>
-  <img src="https://img.shields.io/badge/SpringBoot-Framework-brightgreen"/>
-  <img src="https://img.shields.io/badge/JWT-Authentication-blue"/>
-</p>
 
-## Descrição
-O Sistema de Reservas de Restaurante é uma API REST desenvolvida em Java com Spring Boot,criada a partir do desafio [Desafio de Programação: Desafio: Sistema de Reservas de Restaurante](https://racoelho.com.br/listas/desafios/sistema-de-reservas-de-restaurante).
+![Java](https://img.shields.io/badge/Java-17-ED8B00?labelColor=black)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Framework-6DB33F?labelColor=black)
+![Angular](https://img.shields.io/badge/Angular-Frontend-DD0031?labelColor=black)
 
-O objetivo é implementar funcionalidades comuns de um sistema real de reservas, incluindo:
+![JWT](https://img.shields.io/badge/JWT-Token-yellow?labelColor=black)
+![H2](https://img.shields.io/badge/H2-Database-blue?labelColor=black)
 
-- Autenticação de usuários
+</div>
 
-- Validação de horários disponíveis
+##  💻 Sobre o Projeto
 
-- Gerenciamento de mesas
 
-- Registro de reservas
+O Sistema de Reservas de Restaurante é um projeto desenvolvido com o objetivo de aplicar, na prática, conceitos de Spring Security em um cenário real.
 
-- Controle de acesso por perfil de usuário
+O sistema implementa funcionalidades comuns de aplicações de reservas, incluindo autenticação de usuários, validação de dados e controle de disponibilidade de horários.
 
-## Tecnologias
+Este projeto foi inspirado no desafio:
+🔗 [Desafio: Sistema de Reservas de Restaurante](https://racoelho.com.br/listas/desafios/sistema-de-reservas-de-restaurante)
+
+## 🚀 Tecnologias
 
 - **Java 17**
-
+- **Angular 18**
+- **H2 Database**
 - **Spring Boot**
-    - Spring Web
-    - Spring Data JPA
-    - Spring Security
-
-- **H2 (Banco em memória)**
-
-- **Autenticação**: JWT 
-
+  - Spring Data JPA
+  - Spring Security
+  - Spring Web
+- **Validation**
+- **JWT**
 - **Maven**
 
-## Funcionalidades 
-- Cadastro e login de usuários (CLIENT ou ADMIN)
-- CRUD de mesas (apenas ADMIN)
-- Criação, listagem e cancelamento de reservas
-- Validações de negócio:
-    - Reserva apenas para datas futuras (mínimo 1h de antecedência)
-    - Mesas devem estar ativas
-    - Evita sobreposição de reservas na mesma mesa
-- Tratamento de exceções centralizado via @ControllerAdvice
-- Retorno de mensagens claras via DTO (ExceptionDTO)
+## 🔧 Funcionalidades
+1. **Autenticação de Usuário**
+    - **Registro**: Usuário é capaz se registrar com um nome, e-mail e senha.
+    - **Login**: Após realizar login recebe um token JWT para acesso às funcionalidades.
+    - **Restrição de Acesso**: Apenas usuários logados tem acesso às funcionalidades.
 
-## Endpoints
+2. **Gestão de Mesas**
+    - **Listagem**: Listar todas as mesas disponíveis no restaurante.
+    - **Criar Mesa**: Somente administradores podem adicionar novas mesas ao sistema com um nome e capacidade de pessoas.
+    - **Editar Mesa**:Somente administradores podem alterar mesas existentes no sistema.
+    - **Excluir Mesa**:Somente administradores podem excluir mesas existentes no sistema.
+    - **Status da Mesa**: Cada mesa pode estar disponível ou inativa o que impossibilita o usuário de fazer uma reserva a mesa.
 
-### Usuário 
-| Método | Endpoint          | Descrição         | Autorização|
-| ------ | ----------------- | ---------------- | ---------- |
-| POST   | `/user/register` | Criar um usuário | Público    |
-| POST   | `/user/login`     | Logar usuário    | Público    |
-### Reservas
-| Método | Endpoint               | Descrição                  | Autorização |
-| ------ | ---------------------- | -------------------------- | ----------- |
-| POST   | `/reserve`             | Criar reserva              | CLIENT      |
-| GET    | `/reserve`             | Listar reservas do usuário | CLIENT      |
-| PATCH  | `/reserve/{id}/cancel` | Cancelar reserva           | CLIENT      |
-### Mesas
-| Método | Endpoint             | Descrição      | Autorização   |
-| ------ | -------------------- | -------------- | ------------- |
-| GET    | `/dining-table`      | Listar mesas   | CLIENT, ADMIN |
-| POST   | `/dining-table`      | Criar mesa     | ADMIN         |
-| PATCH  | `/dining-table/{id}` | Atualizar mesa | ADMIN         |
-| DELETE | `/dining-table/{id}` | Deletar mesa   | ADMIN         |
+3. **Sistema de Reservas**
+    - **Criar Reserva**: Somente usuários autenticados podem criar reservas para mesas específicas.
+    - **Verificar Disponibilidade**:
+        - Reserva apenas para datas futuras (mínimo 1h de antecedência)
+        - Mesas devem estar ativas
+        - Evita sobreposição de reservas na mesma mesa(cada reserva possui um intervalo fixo de 2 horas)
+    - **Cancelar Reserva**: Usuários podem cancelar suas reservas, o que libera a mesa para novas reservas.
 
-## Como Rodar?
+## 🕹️ Como Rodar?
 
-1. Clone o repositório 
-    ``` bash
-    https://github.com/JoaoPSCalazans/sistema-de-reservas-de-restaurante.git
-    ```
-2. Configure `application.properties`(**Opcional!:** ele já vem com pré-configurações)
+1. Clone o repositório
+```
+ https://github.com/JoaoPSCalazans/sistema-de-reservas-de-restaurante.git
+```
+2. Entre na pasta `restaurante-api`:
+```bash
+ cd restaurante-api
+```
+3. Configure application.properties (**Opcional**!: ele já vem com pré-configurações)
 
-3. Rode via Maven:
-    ```bash
-        mvn spring-boot:run
+4. Rode via Maven:
+```
+mvn spring-boot:run
         ou
-        .\mvnw spring-boot:run
-    ```
-4. Use o Postman ou outra ferramenta para testar os endpoints
+.\mvnw spring-boot:run
+```
 
----
-##  Usuário ADMIN padrão
+5. Acessa o site na url: `http://localhost:8080`
 
-Criado automaticamente via `CommandLineRunner`.
+### Usuário ADMIN padrão
 
-- **Email:** `admin@email.com`
-- **Senha:** `123456`
-
-> Use este usuário para acessar endpoints restritos como `/dining-table/**`
+Criado automaticamente via CommandLineRunner.
+- **Email**: `admin@email.com`
+- **Senha**: `123456`
 
 > O endpoint /h2-console não precisa de autenticação!!
 
-## Exemplos de JSON para request/response
+## 📸 Exemplos
 
-### Usuário
+### 🏠 Home
+<img src="assets/home.png" width="600" alt="home">
 
-![Login no Postman](assets/screenshot-login.png)
-![Register no Postman](assets/screenshot-register.png)
+### 🔐 Login e Registro
+<img src="assets/login.png" width="600" alt="login">
+<img src="assets/registro.png" width="600" alt="registro">
 
-### Mesa
+### 📋 Listagem de Mesas
+> USUÀRIO:
+<img src="assets/mesas.png" width="600" alt="listagem-de-mesas">
 
-![Authorization no Postman](assets/screenshot-authorization-dining_table.png)
-![Save no Postman](assets/screenshot-save-dining_table.png)
-![ListAll no Postman](assets/screenshot-listAll-dining_table.png)
-![Update no Postman](assets/screenshot-update-dining_table.png)
-![Delete no Postman](assets/screenshot-delete-dining_table.png)
+> ADMIN:
+ <img src="assets/admin-mesa.png" width="600" alt="admin-listagem-de-mesas">
 
-### Reserva
+### 📅 Criação de Reserva
+<img src="assets/reservas.png" width="600">
 
-![Authorization no Postman](assets/screenshot-authorization-reserve.png)
-![Save no Postman](assets/screenshot-save-reserve.png)
-![Cancel no Postman](assets/screenshot-cancel-reserve.png)
+
+## 🧠 Estrutura do Backend
+
+```text
+src/
+ └── main/
+     └── java/
+         └── com/restaurante/api/
+             ├── controller/        # Endpoints da API (REST)
+             ├── service/           # Regras de negócio
+             ├── repository/        # Acesso ao banco de dados
+             ├── domain/            # Camada de domínio
+             │   ├── diningtable/   # Entidade Mesa
+             │   ├── reservation/   # Entidade Reserva
+             │   └── user/          # Entidade Usuário
+             ├── dto/               # Objetos de transferência de dados
+             └── infra/             # Infraestrutura e configurações
+                 ├── exceptions/    # Tratamento de erros
+                 ├── security/      # Configuração de segurança (JWT, filtros de autenticação e autorização)
+                 └── utils/         # Classes utilitárias
+```
