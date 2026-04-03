@@ -4,12 +4,12 @@
 
 # Sistema de Reservas de Restaurante
 
-![Java](https://img.shields.io/badge/Java-17-ED8B00?labelColor=black)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-Framework-6DB33F?labelColor=black)
-![Angular](https://img.shields.io/badge/Angular-Frontend-DD0031?labelColor=black)
+![Java](https://img.shields.io/badge/Java-ED8B00?logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-DD0031?logo=angular)
 
-![JWT](https://img.shields.io/badge/JWT-Token-yellow?labelColor=black)
-![H2](https://img.shields.io/badge/H2-Database-blue?labelColor=black)
+![JWT](https://img.shields.io/badge/JWT-yellow?logo=jsonwebtokens)
+![H2](https://img.shields.io/badge/H2%20Database-blue?logo=h2database)
 
 </div>
 
